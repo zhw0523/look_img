@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>看图</title>
+</head>
+<style>
+    .htm{
+        margin:10px;
+        background: #f8f9fa;
+    }
+    input{
+        outline: none;
+    }
+    .input_username ,.input_pswd{
+        height: 30px;
+        border: skyblue solid 0.5px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+</style>
+<body>
+
+<div class="htm">
+    {# 先写一个注册登录的模块 #}
+    <p>看图 | 欢迎登录</p>
+    <div>
+        <form action="/login" method="post" id="sub">
+            <input type="text" placeholder="username" class="input_username" name="uname" id="uname"><br>
+            <input type="password" placeholder="password" class="input_pswd" name="upswd" id="upswd"><br>
+            <input type="button" value="登录" onclick="check();">
+            <span style="font-size: 12px">有则登录，没有则注册登录</span>
+        </form>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript">
+    function check() {
+        var name_val = document.getElementById('uname').value;
+        var pswd_val = document.getElementById('upswd').value;
+
+        //用户名正则，4到16位（字母，数字，下划线，减号）
+        var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
+        //密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
+        var pPattern = /^[a-zA-Z0-9_-]{4,16}$/;
+        if(uPattern.test(name_val)==true && pPattern.test(pswd_val)==true){
+            var sub =  document.getElementById('sub')
+            sub.submit()
+        }else {
+            alert('4到16位（字母，数字，下划线，减号')
+            return false
+        }
+    }
+</script>
+</html>
